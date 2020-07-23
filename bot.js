@@ -14,5 +14,7 @@ client.on('message', message => {
         message.channel.send('stfu homeless, stop saying the n-word, ugly ass');
     }
 });
-//Token is NzM0MTQyNzUwNDY2OTAwMDY4.XxddYg.EvXHFFtOjU28QjK9Up9AAIGTMQg
-client.login("NzM0MTQyNzUwNDY2OTAwMDY4.XxddYg.EvXHFFtOjU28QjK9Up9AAIGTMQg");
+
+
+    //Token is NzM0MTQyNzUwNDY2OTAwMDY4.XxddYg.EvXHFFtOjU28QjK9Up9AAIGTMQg
+    client.login("NzM0MTQyNzUwNDY2OTAwMDY4.XxddYg.EvXHFFtOjU28QjK9Up9AAIGTMQg");
