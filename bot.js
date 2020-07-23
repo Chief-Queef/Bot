@@ -10,8 +10,8 @@ client.once('ready', () => {
 })
 client.on('message', message => {
 
-	if (message.content === 'nigga') {
-        message.channel.send('stfu homeless, stop saying the n-word, ugly ass');
+	if (message.content === 'damn') {
+        message.channel.send('damn');
     }
 });
 //Token is NzM0MTQyNzUwNDY2OTAwMDY4.XxddYg.EvXHFFtOjU28QjK9Up9AAIGTMQg
