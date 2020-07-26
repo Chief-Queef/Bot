@@ -18,14 +18,21 @@ client.once('ready', () => {
     })
 
     client.user.setActivity("Homeless take a shower", {type: "WATCHING"})
-
-    let generalChannel = client.channels.cache.get("625063966564941861")
+    
+    //Message is sent when online
+    let generalChannel = client.channels.cache.get("735199026676236343")
     const attachment = new Discord.MessageAttachment('https://cdn.discordapp.com/emojis/736669610002087946.png?v=1')
     generalChannel.send("Sup fags, guess who's back online?", attachment)
 
 })
 //Responses
 client.on('message', message => {
+
+    if (message.content === '!dumbass') {
+        const attachment = new Discord.MessageAttachment('https://media.discordapp.net/attachments/625063966564941861/736680719580921856/0325121f-5be3-4dd3-9e4a-95b82efae7f7.png?width=1025&height=123');
+        // Send the attachment in the message channel with a content
+        message.channel.send(`What a dumbass`, attachment);
+      }
 
     if (message.content === '!wot') {
         const attachment = new Discord.MessageAttachment('https://media.discordapp.net/attachments/625063966564941861/736673151898878052/2c09ad8a-748a-4bd0-98f0-045dfd5e9d8b.png?width=1025&height=82');
@@ -55,5 +62,5 @@ client.on('message', message => {
 });
 
 
-    //Token is NzM0MTQyNzUwNDY2OTAwMDY4.XxddYg.EvXHFFtOjU28QjK9Up9AAIGTMQg
-    client.login("NzM0MTQyNzUwNDY2OTAwMDY4.XxddYg.EvXHFFtOjU28QjK9Up9AAIGTMQg");
+    //Token is jMOCDtphkGvnXLDo8kgc3WFblmfo7HiA
+    client.login("jMOCDtphkGvnXLDo8kgc3WFblmfo7HiA");
