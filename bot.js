@@ -28,6 +28,12 @@ client.once('ready', () => {
 //Responses
 client.on('message', message => {
 
+    if (message.content === '!Aussie') {
+        const attachment = new Discord.MessageAttachment('https://media.discordapp.net/attachments/625063966564941861/737032921122209882/Screenshot_2020-07-25_at_11.19.46_PM.png');
+        // Send the attachment in the message channel with a content
+        message.channel.send(`Aussies = Pedos`, attachment);
+      }
+
     if (message.content === '!dumbass') {
         const attachment = new Discord.MessageAttachment('https://media.discordapp.net/attachments/625063966564941861/736680719580921856/0325121f-5be3-4dd3-9e4a-95b82efae7f7.png?width=1025&height=123');
         // Send the attachment in the message channel with a content
@@ -61,6 +67,38 @@ client.on('message', message => {
 
 });
 
+const { Client, MessageEmbed } = require('discord.js');
 
-    //Token is jMOCDtphkGvnXLDo8kgc3WFblmfo7HiA
-    client.login("jMOCDtphkGvnXLDo8kgc3WFblmfo7HiA");
+const prefix = '!';
+
+client.on('message', async message => {
+	if (!message.content.startsWith(prefix) || message.author.bot) return;
+
+	const args = message.content.slice(prefix.length).trim().split(/ +/);
+    const command = args.shift().toLowerCase();
+    
+    const fetch = require('node-fetch');
+
+    const querystring = require('querystring');
+
+if (command === 'urban') {
+  if (!args.length) {
+    return message.channel.send('You need to supply a search term!');
+  }
+
+	const query = querystring.stringify({ term: args.join(' ') });
+
+  const { list } = await fetch(`https://api.urbandictionary.com/v0/define?${query}`).then(response => response.json());
+    if (!list.length) {
+        return message.channel.send(`No results found for **${args.join(' ')}**.`);
+        message.channel.send(list[0].definition);
+}
+}
+
+	// ...
+});
+
+
+
+    //Token is NzM0MTQyNzUwNDY2OTAwMDY4.XxNZtw.Gkq_k4wKV6hbxXEAdOCnTdzdBkI
+    client.login("NzM0MTQyNzUwNDY2OTAwMDY4.XxNZtw.Gkq_k4wKV6hbxXEAdOCnTdzdBkI");
