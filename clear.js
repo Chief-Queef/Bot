@@ -1,38 +1,33 @@
-const Discord = require('discord.js');
-const client = new Discord.Client();
+module.exports.run = async (bot, message, args) => {
+            
+    if (message.deletable) {
+        message.delete();
+    }
 
-client.once('ready', () => {
-    console.log('Clearing is now ready!')  
-})
+    if (!message.member.hasPermission("MANAGE_MESSAGES")) {
+        return message.reply("Missing Permissions!").then(m => m.delete(5000));
+    }
 
-module.exports.run = async (bot, message) => {
+    if (isNaN(args[0]) || parseInt(args[0]) <= 0) {
+        return message.reply("This is not a number").then(m => m.delete(5000));
+    }
 
-    const messageArray = message.content.split(' ');
-	const args = messageArray.slice(1);
-
-    if (!message.member.permissions.has("MANAGE_MESSAGES")) return message.channel.send('Lack of Perms!');
-    
     let deleteAmount;
-
-    if (isNaN(args[0]) || parseInt(args[0]) <= 0) { return message.reply('Please put a number only!') }
-
     if (parseInt(args[0]) > 100) {
-        return message.reply('You can only delete 100 messages at a time!')
+        deleteAmount = 100;
     } else {
         deleteAmount = parseInt(args[0]);
     }
 
-    message.channel.bulkDelete(deleteAmount + 1, true);
-    message.reply(`**Successfully** Deleted ***${deleteAmount}*** Messages.`)
+    message.channel.bulkDelete(deleteAmount, true)
+    .catch(err => message.reply(`Something went wrong... ${err}`));
+
 }
 
 module.exports.config = {
     name: "clear",
-    usage: "?clear",
-    aliases: []
+    description: "clears message",
+    usage: "!clear",
+    accessableby: "Members",
+    aliases: ['c', 'purge']
 }
-
-
-
-//Token is NzM0MTQyNzUwNDY2OTAwMDY4.XxNZtw.Gkq_k4wKV6hbxXEAdOCnTdzdBkI
-client.login("NzM0MTQyNzUwNDY2OTAwMDY4.XxNZtw.Gkq_k4wKV6hbxXEAdOCnTdzdBkI");
