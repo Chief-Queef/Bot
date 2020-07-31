@@ -67,38 +67,60 @@ client.on('message', message => {
 
 });
 
-const { Client, MessageEmbed } = require('discord.js');
 
-const prefix = '!';
 
-client.on('message', async message => {
-	if (!message.content.startsWith(prefix) || message.author.bot) return;
+//Meme command
+const got = require('got');
 
-	const args = message.content.slice(prefix.length).trim().split(/ +/);
-    const command = args.shift().toLowerCase();
-    
-    const fetch = require('node-fetch');
+client.once('ready', () => {
+    console.log('Memes are ready!')  
+})
 
-    const querystring = require('querystring');
+client.on('message', message => {
+    if (message.content === "!meme") {
+        const embed = new Discord.MessageEmbed()
+        got('https://www.reddit.com/r/memes/random/.json').then(response => {
+            let content = JSON.parse(response.body);
+            let permalink = content[0].data.children[0].data.permalink;
+            let memeUrl = `https://reddit.com${permalink}`;
+            let memeImage = content[0].data.children[0].data.url;
+            let memeTitle = content[0].data.children[0].data.title;
+            let memeUpvotes = content[0].data.children[0].data.ups;
+            let memeDownvotes = content[0].data.children[0].data.downs;
+            let memeNumComments = content[0].data.children[0].data.num_comments;
+            embed.setTitle(`${memeTitle}`)
+            embed.setURL(`${memeUrl}`)
+            embed.setImage(memeImage)
+            embed.setColor('RANDOM')
+            embed.setFooter(`👍 ${memeUpvotes} 👎 ${memeDownvotes} 💬 ${memeNumComments}`)
+            message.channel.send(embed);
+        })
+    }
 
-    if (command === 'urban') {
-      if (!args.length) {
-        return message.channel.send('You need to supply a search term!');
-  }
+})
 
-	  const query = querystring.stringify({ term: args.join(' ') });
+//Mute command
+module.exports.run = async (bot, message, args) => {
+  if(!message.member.hasPermission(['ADMINISTRATOR'])) return;
+  let member = message.mentions.members.first() || message.guild.members.cache.get(args[0]) || message.guild.members.cache.find(x => x.user.username === args.slice(0).join(" ") || x.user.username === args[0])
+  if(member.hasPermission(['ADMINISTRATOR']) && !message.member.hasPermission('ADMINISTRATOR')) return;
 
-    const { list } = await fetch(`https://api.urbandictionary.com/v0/define?${query}`).then(response => response.json());
-      if (!list.length) {
-          return message.channel.send(`No results found for **${args.join(' ')}**.`);
-          message.channel.send(list[0].definition);
+      let mutedRole = message.guild.roles.cache.get('MUTE_ROLE_ID');
+      let verifiedRole = message.guild.roles.cache.get('ROLE ID (IF YOU ALREADY HAVE A ROLE DEAFULT FOR PEOPLE WHO JOINS YOUR SERVER!)');
+      if(mutedRole) {
+          member.roles.add(mutedRole);
+          member.roles.remove(verifiedRole);
+          message.channel.send("User was Successfully muted.");
+      }
 }
+
+module.exports.config = {
+  name: "mute",
+  description: "",
+  usage: "!mute",
+  accessableby: "Members",
+  aliases: []
 }
-
-
-	// ...
-});
-
 
 
 //Token is NzM0MTQyNzUwNDY2OTAwMDY4.XxNZtw.Gkq_k4wKV6hbxXEAdOCnTdzdBkI

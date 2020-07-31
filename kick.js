@@ -1,25 +1,86 @@
-module.exports.run = async (bot, message, args) => {
-    if(!message.member.hasPermission('KICK_MEMBERS'))
-        message.channel.send("You don't have permission to use that command.");
-    else {
-        let member = message.guild.members.cache.get(args);
-        if(member) {
-        try {
-            await member.kick();
-            console.log('Kicked');
-            message.channel.send(`${member}, Kicked!`)
-        }
-            catch(err) {
-            console.log(err);
-        }
+const Discord = require("discord.js");
+const client = new Discord.Client();
+
+module.exports= {
+  name: 'kick',
+  category: 'moderation',
+  description: 'kick a members',
+  run: async(client,message,args,guild) => {
+
+    let kicked = message.mentions.users.first() || client.users.resolve(args[0]);
+    let reason = args.slice(1).join(" ");
+  
+    // MESSAGES
+  
+    if (!kicked) {
+      let kickinfoembed = new Discord.MessageEmbed()
+        .setTitle("Command: kick")
+        .setDescription(
+          `**Description:** Kick a member. \n` +
+            "**Sub Commands:**\n" +
+            "\n" +
+            "**Usage:**\n" +
+            "-kick [user] (reason) \n" +
+            "**Examples:** \n" +
+            "-kick <@597253939469221891> spam"
+        )
+        .setColor("#2C2F33");
+      message.channel.send(kickinfoembed);
+  
+      return;
     }
-}
+  
+    if (message.author === kicked) {
+      let sanctionyourselfembed = new Discord.MessageEmbed()
+        .setDescription(`You cannot sanction yourself`)
+        .setColor("#2C2F33");
+      message.channel.send(sanctionyourselfembed);
+  
+      return;
+    }
+  
+    if (!reason) {
+      let noreasonembed = new Discord.MessageEmbed()
+        .setDescription(`Enter a reason`)
+        .setColor("#2C2F33");
+      message.channel.send(noreasonembed);
+  
+      return;
+    }
+  
+    if (!message.member.permissions.has("KICK_MEMBERS")) {
+      let nopermsembed = new Discord.MessageEmbed()
+        .setDescription(
+          "You do not have permission `KICK MEMBERS` contact an administrator"
+        )
+        .setColor("#2C2F33");
+      message.channel.send(nopermsembed);
+  
+      return;
+    }
+  
+    if (!message.guild.me.permissions.has("KICK_MEMBERS")) {
+      let botnopermsembed = new Discord.MessageEmbed()
+        .setDescription(
+          "I do not have `KICK MEMBERS` permission, please contact an administrator"
+        )
+        .setColor("#2C2F33");
+      message.channel.send(botnopermsembed);
+  
+      return;
+    }
+  
+    message.guild.member(kicked).kick(reason);
+  
+    let successfullyembed = new Discord.MessageEmbed()
+      .setDescription(`${kicked.tag} has been successfully kicked.`)
+      .setColor("#2C2F33");
+  
+    message.channel.send(successfullyembed);
+
+  }
 }
 
-module.exports.config = {
-    name: "kick",
-    description: "Kicks a user",
-    usage: "!kick",
-    accessableby: "Admins",
-    aliases: []
-}
+client.once('ready', () => {
+    console.log('Go mute them')  
+})
