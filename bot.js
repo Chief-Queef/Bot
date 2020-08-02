@@ -76,6 +76,8 @@ client.once('ready', () => {
     console.log('Memes are ready!')  
 })
 
+//https://www.reddit.com/r/memes/random/.json
+
 client.on('message', message => {
     if (message.content === "!meme") {
         const embed = new Discord.MessageEmbed()

@@ -8,10 +8,13 @@
   },
   "dependencies": {
     "api": "^2.2.0",
+    "bufferutil": "^4.0.1",
     "discord.js": "^12.2.0",
     "got": "^11.5.1",
+    "ms": "^2.1.2",
     "node-fetch": "^2.6.0",
     "request": "2.81.0",
-    "urban": "^0.3.2"
+    "urban": "^0.3.2",
+    "utf-8-validate": "^5.0.2"
   }
 }
