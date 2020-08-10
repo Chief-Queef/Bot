@@ -28,6 +28,18 @@ client.once('ready', () => {
 //Responses
 client.on('message', message => {
 
+    if (message.content === 'Anyone on') 
+        message.channel.send('Shut yo bitch ass up. Wait patiently ');
+
+    if (message.content === 'anyone on') 
+        message.channel.send('Shut yo bitch ass up. Wait patiently ');
+
+    if (message.content === 'Anyone on?') 
+        message.channel.send('Shut yo bitch ass up. Wait patiently ');
+
+    if (message.content === "🔥")
+        message.channel.send('Did someone say fire? https://soundcloud.com/home-less-204896280/this-one-is-for-nya');
+
     if (message.content === '!Aussie') {
         const attachment = new Discord.MessageAttachment('https://media.discordapp.net/attachments/625063966564941861/737032921122209882/Screenshot_2020-07-25_at_11.19.46_PM.png');
         // Send the attachment in the message channel with a content
@@ -67,7 +79,7 @@ client.on('message', message => {
 
 });
 
-
+// https://soundcloud.com/home-less-204896280/this-one-is-for-nya
 
 //Meme command
 const got = require('got');
