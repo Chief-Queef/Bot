@@ -26,7 +26,53 @@ client.once('ready', () => {
 
 })
 //Responses
+//https://cdn.discordapp.com/attachments/735199026676236343/742225787482275850/Im_sorry_we_couldnt_skype_tonight.mp4
 client.on('message', message => {
+
+    if (message.content === 'Hey-') {
+        const attachment = new Discord.MessageAttachment('https://cdn.discordapp.com/attachments/735199026676236343/742225787482275850/Im_sorry_we_couldnt_skype_tonight.mp4');
+        // Send the attachment in the message channel with a content
+        message.channel.send(`Oh hey`, attachment);
+      }
+
+
+    if (message.content === 'hey-') {
+        const attachment = new Discord.MessageAttachment('https://cdn.discordapp.com/attachments/735199026676236343/742225787482275850/Im_sorry_we_couldnt_skype_tonight.mp4');
+        // Send the attachment in the message channel with a content
+        message.channel.send(`Oh hey`, attachment);
+      }
+
+
+    if (message.content === 'Hey') {
+        const attachment = new Discord.MessageAttachment('https://cdn.discordapp.com/attachments/735199026676236343/742225787482275850/Im_sorry_we_couldnt_skype_tonight.mp4');
+        // Send the attachment in the message channel with a content
+        message.channel.send(`Oh hey`, attachment);
+      }
+
+
+    if (message.content === 'Hey -') {
+        const attachment = new Discord.MessageAttachment('https://cdn.discordapp.com/attachments/735199026676236343/742225787482275850/Im_sorry_we_couldnt_skype_tonight.mp4');
+        // Send the attachment in the message channel with a content
+        message.channel.send(`Oh hey`, attachment);
+      }
+
+
+    if (message.content === 'hey') {
+        const attachment = new Discord.MessageAttachment('https://cdn.discordapp.com/attachments/735199026676236343/742225787482275850/Im_sorry_we_couldnt_skype_tonight.mp4');
+        // Send the attachment in the message channel with a content
+        message.channel.send(`Oh hey`, attachment);
+      }
+
+
+    if (message.content === 'hey -') {
+        const attachment = new Discord.MessageAttachment('https://cdn.discordapp.com/attachments/735199026676236343/742225787482275850/Im_sorry_we_couldnt_skype_tonight.mp4');
+        // Send the attachment in the message channel with a content
+        message.channel.send(`Oh hey`, attachment);
+      }
+
+    if (message.content === 'Anyone on') 
+        message.channel.send('Shut yo bitch ass up. Wait patiently ');
+
 
     if (message.content === 'Anyone on') 
         message.channel.send('Shut yo bitch ass up. Wait patiently ');
@@ -126,15 +172,16 @@ module.exports.run = async (bot, message, args) => {
           member.roles.remove(verifiedRole);
           message.channel.send("User was Successfully muted.");
       }
+      module.exports.config = {
+        name: "mute",
+        description: "",
+        usage: "!mute",
+        accessableby: "Members",
+        aliases: []
+      }
 }
 
-module.exports.config = {
-  name: "mute",
-  description: "",
-  usage: "!mute",
-  accessableby: "Members",
-  aliases: []
-}
+
 
 
 //Token is NzM0MTQyNzUwNDY2OTAwMDY4.XxNZtw.fyIrCXc4sBPNAOeoEPt0sNvzrEk
