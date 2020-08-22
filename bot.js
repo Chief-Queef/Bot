@@ -29,6 +29,10 @@ client.once('ready', () => {
 //https://cdn.discordapp.com/attachments/735199026676236343/742225787482275850/Im_sorry_we_couldnt_skype_tonight.mp4
 client.on('message', message => {
 
+  if (message.content === '!pray') 
+        message.channel.send("O' Holy Spirit, please come like a dove. Shield and protect now the one that I love, Nya. Every breath I take, every morning I wake, and every moment of every hour, I live under your power. I ask you now to touch Nya with that same power, Amen. I pray for my Nya that they would be held at this time in your loving arms. Bless the work of the doctors, surgeons, hospital staff, and those who take care of Nya, Amen.");
+
+
     if (message.content === 'Hey-') {
         const attachment = new Discord.MessageAttachment('https://cdn.discordapp.com/attachments/735199026676236343/742225787482275850/Im_sorry_we_couldnt_skype_tonight.mp4');
         // Send the attachment in the message channel with a content
