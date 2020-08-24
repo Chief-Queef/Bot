@@ -41,7 +41,7 @@ client.on('message', message => {
 })
 
 client.once('ready', () => {
-    console.log('Go mute them')  
+    console.log('Go kick them')  
 })
 
 //Token is NzM0MTQyNzUwNDY2OTAwMDY4.XxNZtw.fyIrCXc4sBPNAOeoEPt0sNvzrEk
