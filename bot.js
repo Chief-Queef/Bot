@@ -196,5 +196,5 @@ client.on('guildMemberAdd', member => {
 
 
 
-//Token is NzM0MTQyNzUwNDY2OTAwMDY4.XxNZtw.fyIrCXc4sBPNAOeoEPt0sNvzrEk
-client.login("NzM0MTQyNzUwNDY2OTAwMDY4.XxNZtw.fyIrCXc4sBPNAOeoEPt0sNvzrEk");
+//Token is: Bro, I told you ain't getting the token
+client.login("No bro, stop looking for it");

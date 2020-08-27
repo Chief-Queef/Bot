@@ -30,5 +30,5 @@ client.on('message', message => {
 })
 
 
-//Token is NzM0MTQyNzUwNDY2OTAwMDY4.XxNZtw.fyIrCXc4sBPNAOeoEPt0sNvzrEk
-client.login("NzM0MTQyNzUwNDY2OTAwMDY4.XxNZtw.fyIrCXc4sBPNAOeoEPt0sNvzrEk");
+//Token is: No, you're not getting it
+client.login("Nope, not even here");
